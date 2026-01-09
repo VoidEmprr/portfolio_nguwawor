@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Void | Portfolio</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+
+
+    <style>
+
+        :root {
+            --p: #c084fc;
+            --bg: #020617;
+            --txt: #f8fafc
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            font-family: Segoe UI, sans-serif;
+            background: radial-gradient(circle at top, #120c2a, #020617 70%);
+            color: var(--txt);
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 10%;
+            background: #020617f0;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        nav a {
+            color: #e5e7eb;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: 500
+        }
+
+        nav a:hover {
+            color: var(--p)
+        }
+
+        .brand {
+            font-weight: 700
+        }
+
+        .lang-toggle {
+            min-width: 48px;
+            text-align: center;
+            border: 1px solid var(--p);
+            color: var(--p);
+            padding: 6px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            user-select: none;
+            transition: .25s;
+        }
+
+        .lang-toggle:hover {
+            background: var(--p);
+            color: #020617
+        }
+
+        #intro {
+            position: fixed;
+            inset: 0;
+            background: #020617;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            animation: introOut 3.2s ease forwards;
+        }
+
+        #intro h1 {
+            font-size: 4.6rem;
+            color: var(--p);
+            text-shadow: 0 0 45px #1499d1;
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes introOut {
+            0% {
+                opacity: 1
+            }
+
+            70% {
+                opacity: 1
+            }
+
+            100% {
+                opacity: 0;
+                pointer-events: none
+            }
+        }
+
+        .hero {
+            min-height: 100vh;
+            padding: 0 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .hero h1 {
+            font-size: 3.6rem;
+            line-height: 1.1
+        }
+
+        .hero span {
+            color: var(--p)
+        }
+
+        .hero p {
+            max-width: 720px;
+            opacity: .92
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 26px;
+            border-radius: 14px;
+            font-weight: 600;
+            background: var(--p);
+            color: #020617;
+            cursor: pointer;
+            user-select: none;
+            box-shadow: 0 0 24px #7c3aed66;
+            transition: .25s;
+            border: none;
+        }
+
+        .btn.alt {
+            background: transparent;
+            color: #e5e7eb;
+            border: 1px solid var(--p)
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 36px var(--p)
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+            filter: brightness(0.95)
+        }
+
+        section {
+            padding: 120px 10%
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px
+        }
+
+        .card {
+            background: #020617cc;
+            border: 1px solid #7c3aed44;
+            border-radius: 18px;
+            padding: 22px;
+            transition: .35s;
+            cursor: default;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 0 36px #7c3aed44
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            color: #9ca3af
+        }
+
+        .footage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .footage-item {
+            border: 1px solid #7c3aed44;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #020617cc;
+        }
+
+        .footage-item img,
+        .footage-item iframe {
+            width: 100%;
+            height: 220px;
+            border: none;
+            object-fit: cover;
+        }
+
+        .footage-item p {
+            padding: 12px;
+            font-size: .9rem;
+            color: #c7c7ff;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .contact-card {
+            padding: 22px;
+            border-radius: 20px;
+            border: 1px solid #7c3aed55;
+            background: #020617cc;
+            text-decoration: none;
+            color: white;
+            transition: .3s;
+        }
+
+        .contact-card span {
+            display: block;
+            margin-top: 8px;
+            font-size: .9rem;
+            color: #b7b7ff;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 0 30px #7c3aed55;
+        }
+
+        .brand-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #c084fc;
+            box-shadow: 0 0 12px #7c3aedaa;
+            transition: .4s;
+        }
+
+        .brand-wrap:hover .brand-avatar {
+            transform: rotate(-6deg) scale(1.1);
+            box-shadow: 0 0 24px #c084fc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="intro">
+        <h1>w3Lc0mE</h1>
+    </div>
+
+    <nav>
+        <div class="brand-wrap">
+            <img src="gdftopls.jpg" alt="aih" class="brand-avatar">
+            <div class="brand">Void.</div>
+        </div>
+
+        <div>
+            <a href="#about" class="nav-link">about🥀</a>
+            <a href="#skills">skill vault</a>
+            <a href="#achievements">acipmen😹</a>
+            <a href="#glri" class="nav-link">galeri🤭</a>
+            <a href="#contact" class="nav-link">contact😎</a>
+        </div>
+        <div class="lang-toggle" id="langBtn">ID</div>
+    </nav>
+
+    <div class="hero">
+        <h1 id="hero-title"></h1>
+        <p id="hero-desc"></p>
+        <div>
+            <button class="btn" onclick="scrollToSection('contact')">Just Click Mee</button>
+            <button class="btn alt" onclick="scrollToSection('')]">See My World</button><!--hiasan aja mas-->
+        </div>
+    </div>
+
+    <section id="about">
+        <h2>About</h2>
+        <div class="cards">
+            <div class="card">Siswa jurusan teknik dengan minat utama pada informatika, pemrograman, UI design dan
+                pengembangan perangkat lunak.</div>
+            <div class="card">Memiliki pengalaman masing masing 1 minggu(kecuali C++) pada, Javascript, CSS, HTML, C++,
+                Python.(little tiny mini dikit lua)</div>
+            <div class="card">Sedang mempersiapkan diri untuk semester duwa.</div><br>
+            <p style="opacity:.3">Dual Track Student – Informatics & Multimedia</p>
+
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skill Vault ⚡</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                💻 Programming & Logic
+                <br><span style="opacity:.6">C++, basic Python, algorithm thinking</span>
+            </div>
+
+            <div class="card">
+                🌐 Web Development
+                <br><span style="opacity:.6">HTML, CSS, layouting & responsive</span>
+            </div>
+
+            <div class="card">
+                🎬 Video Editing
+                <br><span style="opacity:.6">CapCut, color grading dll</span>
+            </div>
+
+            <div class="card">
+                📷 Photography
+                <br><span style="opacity:.6">composition, color & visual</span>
+            </div>
+
+            <div class="card">
+                👕 Clothes & Totebag Design
+                <br><span style="opacity:.6">desain baju, totebag, mockup produk</span>
+            </div>
+
+            <div class="card">
+                🧩 Problem Solving
+                <br><span style="opacity:.6">komputasional thinking</span>
+            </div>
+
+            <div class="card">
+                🎮 Game Economy Trading
+                <br><span style="opacity:.6">Roblox, Toram, Blox Fruit</span>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section id="achievements">
+        <h2>Pencapaian Semasa Hidup 😹</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                🏆 Ketua Guild Blox Fruit (Global #89)
+                <br><span style="opacity:.6">peringkat global maszz</span>
+            </div>
+
+            <div class="card">
+                🧠 Ikut OSN Informatika
+                <br><span style="opacity:.6">belum pernah juara, tapi sudah pernah kalah😎</span>
+            </div>
+
+            <div class="card">
+                🧪 Lomba Belia / KIR
+                <br><span style="opacity:.6">pernah bikin makalah ilmiah di word</span>
+            </div>
+
+            <div class="card">
+                🏃 Ikut O2SN
+                <br><span style="opacity:.6">absen doang(kalah di semi final)</span>
+            </div>
+
+            <div class="card">
+                🏗 Founder SMATICS
+                <br><span style="opacity:.6">walau sering ngilang</span>
+            </div>
+
+            <div class="card">
+                🎮 Main Toram Online
+                <br><span style="opacity:.6">100+ jam hidup ilang😹</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section id="glri">
+        <h2>footagex tipis tipis mas(mff gx interaktif)</h2>
+
+        <div class="footage-grid">
+
+            <div class="footage-item">
+                <img src="https://i.imgur.com/odwq8kB.png"alt="nyalain paket dulu">
+                <p>Fisch</p>
+            </div>
+
+            <div class="footage-item">
+                <img src="https://i.imgur.com/SpNZPvk.png" alt="nyalain paket dulu">
+                <p>Evade </p>
+            </div>
+
+            <div class="footage-item">
+                <img src="https://imgur.com/qSAx9XB.png" alt="nyalain paket dulu">
+                <p>Blox fruit - Trading</p>
+            </div>
+
+            <div class="footage-item">
+                <iframe src="plssiapapunuploadkan(1).mp4" allowfullscreen></iframe>
+                <p>Death Ball – idle</p>
+            </div>
+
+            <div class="footage-item">
+                <iframe src="plssiapapunuploadkan.mp4" allowfullscreen> </iframe>
+                <p>Evade – infinity slide</p>
+            </div>
+
+            <div class="footage-item">
+                <img src="https://imgur.com/pV9vbKG.png" alt="nyalain paket dulu">
+                <p>Lomba belia - experimen karang jahe</p>
+            </div>
+
+            <div class="footage-item">
+                <img src="https://imgur.com/vEs26XI.png" alt="nyalain paket dulu">
+                <p>O2SN - persiapan lomba</p>
+            </div>
+
+            <div class="footage-item">
+                <img src="https://imgur.com/gfQBfAe.png" alt="nyalain paket dulu">
+                <p>Totebag sza</p>
+            </div>
+
+            <div class="footage-item">
+                <img src="https://imgur.com/3om2Zjy.png" alt="nyalain paket dulu">
+                <p>Baju roblok</p>
+            </div>
+
+            <div class="footage-item">
+                <img src="https://imgur.com/v1TdBLQ.png" alt="ga ada paket wok">
+                <p>Web dev - proses pembuatan webstie</p>
+            </div>
+
+            <!--padahal mah gapunya project dawg dawg😹😹😹-->
+        </div>
+    </section>
+
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+
+        <div class="contact-grid">
+            <a class="contact-card" href="mailto:ilhamsabillah09@gmail.com">
+                📧 Email
+                <span>ilhamsabillah09@gmail.com</span>
+            </a>
+
+            <a class="contact-card" href="https://instagram.com/voidemperorr" target="_blank">
+                📷 Instagram
+                <span>@voidemperorr</span>
+            </a>
+
+        </div>
+    </section>
+
+
+    <footer>© 2025 Void(create in 4 hours)</footer>
+
+    <!--<button id="themeToggle" class="theme-btn">🌙</button>
+
+    <audio id="bgmLight" loop>
+        <source src="https://cdn.pixabay.com/audio/2023/03/30/audio_5d7e3f27b1.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="bgmDark" loop>
+        <source src="https://cdn.pixabay.com/audio/2022/10/10/audio_90fd4fa7d4.mp3" type="audio/mpeg">
+    </audio>-->
+
+
+    <script>
+        const LANG = {
+            idbeta: {
+                t: "Membangun Masa Depan dengan Kode Modern.",
+                d: "Saya Void, siswa jurusan teknik yang fokus pada informatika, pemrograman, dan pengembangan sistem web modern. Saya tertarik pada logika game, dan antarmuka yang indah."
+            },
+            enbeta: {
+                t: "Building the Future with Modern Code.(ib rizkwya)",
+                d: "I’m Void, a technical high school student focused on informatics, programming, and modern web system development. Im intrested about algorithm, game logic, and beautiful user interfaces."
+            },
+            jwbeta: {
+                t: "Nggawe Masa Depan nganggo Kode Modern.",
+                d: "kulo Void, siswa teknik sing fokus neng informatika, pemrograman, dan pangembangan sistem web modern. kulo seneng logika algoritma dan antarmuka sing uapikk.(beta kabehh)"
+            }
+        };
+
+        const langs = ["idbeta", "enbeta", "jwbeta"];
+        let idx = 0;
+
+        function applyLang(l) {
+            document.getElementById("hero-title").innerText = LANG[l].t;
+            document.getElementById("hero-desc").innerText = LANG[l].d;
+            document.getElementById("langBtn").innerText = l.toUpperCase();
+            localStorage.setItem("lang", l);
+            idx = langs.indexOf(l);
+        }
+
+        document.getElementById("langBtn").addEventListener("click", () => {
+            idx = (idx + 1) % langs.length;
+            applyLang(langs[idx]);
+        });
+
+        applyLang(localStorage.getItem("lang") || "id");
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+        }
+    </script>
+
+    <!--<div id="themeBtn">🌓</div>
+    <audio id="darkMusic" loop></audio>
+    <audio id="lightMusic" loop></audio> --> <!--masih ongoing wok-->
+
+
+</body>
+
+</html>
